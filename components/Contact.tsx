@@ -11,11 +11,11 @@ export default function Contact() {
         </p>
         <div className="flex flex-col sm:flex-row gap-6">
           <a
-            href="mailto:sebgreen_24@outlook.com"
+            href="mailto:contact@sebagreen.com"
             className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"
           >
             <MailIcon />
-            sebgreen_24@outlook.com
+            contact@sebagreen.com
           </a>
           <a
             href="https://github.com/SebGreen24"
