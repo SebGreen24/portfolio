@@ -3,11 +3,21 @@ type Project = {
   description: string
   tags: string[]
   githubUrl?: string
+  pressUrl?: string
+  embedUrl?: string
   isPrivate?: boolean
   comingSoon?: boolean
 }
 
 const PROJECTS: Project[] = [
+  {
+    name: 'Digital Persona',
+    description:
+      'An AI-driven 3D avatar of an academic supervisor, built as a conversational teaching assistant for a Professional Ethics in Computing course. Architected the FastAPI backend, integrating Gemini for LLM responses, ElevenLabs voice cloning, DistilBERT emotion detection, and ChromaDB memory via a WebSocket bridge to a Unity/Metahuman frontend.',
+    tags: ['Python', 'FastAPI', 'WebSocket', 'Gemini', 'ElevenLabs', 'DistilBERT', 'ChromaDB', 'Unity'],
+    pressUrl: 'https://www.nottinghampost.com/news/nottingham-news/nottingham-university-professor-cloned-using-11026741',
+    embedUrl: 'https://www.instagram.com/reel/DaLJICiErja/embed/',
+  },
   {
     name: 'Ecosystem Simulation NEA',
     description:
@@ -78,18 +88,64 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
       )}
-      {project.githubUrl && (
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors"
-        >
-          <GitHubIcon />
-          GitHub
-        </a>
+      <div className="flex flex-wrap gap-4">
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors"
+          >
+            <GitHubIcon />
+            GitHub
+          </a>
+        )}
+        {project.pressUrl && (
+          <a
+            href={project.pressUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent transition-colors"
+          >
+            <ExternalLinkIcon />
+            Press
+          </a>
+        )}
+      </div>
+      {project.embedUrl && (
+        <div className="mt-6">
+          <iframe
+            src={project.embedUrl}
+            title="Digital Persona — Nottingham Post video"
+            width="340"
+            height="700"
+            frameBorder="0"
+            scrolling="no"
+            className="rounded-card border border-line-light dark:border-line-dark max-w-full"
+          />
+        </div>
       )}
     </article>
+  )
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
   )
 }
 
